@@ -38,8 +38,12 @@ export default function Home() {
           </text>
         </svg>
 
-        {/* Cutout portrait */}
-        <div className="w-[180px] sm:w-[220px] md:w-[260px]">
+        {/* Cutout portrait — click/tap to scroll down to the gallery */}
+        <a
+          href="#gallery"
+          aria-label="Scroll to gallery"
+          className="block w-[180px] sm:w-[220px] md:w-[260px] cursor-pointer transition-transform duration-500 ease-out hover:scale-[1.04]"
+        >
           <Image
             src="/images/portrait-cutout.png"
             alt="Portrait of George Mann"
@@ -50,7 +54,7 @@ export default function Home() {
             fetchPriority="high"
             className="w-full h-auto"
           />
-        </div>
+        </a>
 
         <h1 className="sr-only">George Mann</h1>
         <p

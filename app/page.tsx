@@ -134,17 +134,14 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-black">
         <div
-          className="max-w-5xl mx-auto px-6 py-8 text-center text-xs text-neutral-500 tracking-wider uppercase"
+          className="max-w-5xl mx-auto px-6 py-8 text-center text-xs text-neutral-500 tracking-wider"
           style={{ fontFamily: "ui-serif, Georgia, 'Times New Roman', serif" }}
         >
-          Licensing inquiries:{' '}
           <a
-            href="https://www.akg-images.co.uk/"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:brad_smith@earthlink.net"
             className="underline hover:text-white transition-colors"
           >
-            akg-images
+            brad_smith@earthlink.net
           </a>
         </div>
       </footer>

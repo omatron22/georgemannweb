@@ -65,6 +65,12 @@ export default function Navigation() {
             >
               Bio
             </a>
+            <a
+              href="mailto:brad_smith@earthlink.net"
+              className="hover:opacity-60 transition-opacity cursor-pointer"
+            >
+              Contact
+            </a>
           </div>
         </div>
       </div>

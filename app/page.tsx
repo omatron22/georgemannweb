@@ -1,65 +1,153 @@
-import Image from "next/image";
+import Image from 'next/image';
+import Navigation from './components/Navigation';
+import Gallery, { type Photo } from './components/Gallery';
+import captionsData from './captions.json';
+
+const photos: Photo[] = captionsData.photos;
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+    <>
+      <Navigation />
+      <div className="film-grain" aria-hidden="true" />
+
+      {/* Hero */}
+      <section
+        id="hero"
+        className="min-h-screen flex flex-col items-center justify-center px-6 text-center"
+      >
+        {/* Curved "George Mann" arcing above the portrait */}
+        <svg
+          viewBox="0 0 600 180"
+          className="w-[300px] sm:w-[380px] md:w-[460px] -mb-4 sm:-mb-6 md:-mb-8"
+          aria-hidden="true"
+        >
+          <defs>
+            <path id="hero-arc" d="M 40 160 Q 300 -10 560 160" fill="none" />
+          </defs>
+          <text
+            fill="#ffffff"
+            fontSize="58"
+            fontFamily="ui-serif, Georgia, 'Times New Roman', serif"
+            fontWeight="600"
+            letterSpacing="2"
+          >
+            <textPath href="#hero-arc" startOffset="50%" textAnchor="middle">
+              George Mann
+            </textPath>
+          </text>
+        </svg>
+
+        {/* Cutout portrait */}
+        <div className="w-[180px] sm:w-[220px] md:w-[260px]">
+          <Image
+            src="/images/portrait-cutout.png"
+            alt="Portrait of George Mann"
+            width={574}
+            height={711}
+            sizes="260px"
+            loading="eager"
+            fetchPriority="high"
+            className="w-full h-auto"
+          />
+        </div>
+
+        <h1 className="sr-only">George Mann</h1>
+        <p
+          className="mt-2 sm:mt-3 text-sm sm:text-base tracking-[0.3em] text-white"
+          style={{ fontFamily: "ui-serif, Georgia, 'Times New Roman', serif" }}
+        >
+          1905 &mdash; 1977
+        </p>
+        <p
+          className="mt-2 text-sm sm:text-base italic text-white max-w-xl"
+          style={{ fontFamily: "ui-serif, Georgia, 'Times New Roman', serif" }}
+        >
+          Vaudeville photography, late 1920s through the early 1940s
+        </p>
+      </section>
+
+      {/* Gallery */}
+      <section id="gallery" className="bg-black pt-12 pb-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+          <Gallery photos={photos} />
+        </div>
+      </section>
+
+      {/* Bio */}
+      <section id="bio" className="bg-black pt-12 pb-24">
+        <div
+          className="max-w-3xl mx-auto px-6 sm:px-8 text-neutral-200 leading-relaxed text-base sm:text-lg space-y-5"
+          style={{ fontFamily: "ui-serif, Georgia, 'Times New Roman', serif" }}
+        >
+          <p>
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="https://en.wikipedia.org/wiki/George_Mann_(vaudeville_performer)"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-neutral-500 underline-offset-4 hover:text-white hover:decoration-white transition-colors"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
+              George Mann
+            </a>{' '}
+            (1905&ndash;1977) is best remembered, not only as half of the
+            vaudeville comedy team of{' '}
             <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="https://en.wikipedia.org/wiki/Barto_and_Mann"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-neutral-500 underline-offset-4 hover:text-white hover:decoration-white transition-colors"
             >
-              Learning
-            </a>{" "}
-            center.
+              Barto &amp; Mann
+            </a>
+            , but for the remarkable body of photographic work he created behind
+            the scenes from the late 1920s through the early 1940s. While
+            performing across the United States and abroad, Mann produced an
+            estimated 12,000 black-and-white photographs and extensive 16mm film
+            footage, capturing candid moments of performers, backstage life, and
+            the atmosphere of vaudeville at its height. His images reveal both
+            technical skill and a keen sensitivity to composition, light, and
+            character, offering a rare visual record of an earlier entertainment
+            era. In later years, he extended his photographic interests into 3-D
+            imagery, designing a viewer to display his work&mdash;much of it
+            featuring Southern California landmarks&mdash;bringing the same
+            curiosity and inventiveness that marked his earlier documentation of
+            vaudeville life.
+          </p>
+          <p>
+            Licensing for these and other photographs is available through{' '}
+            <a
+              href="https://www.akg-images.co.uk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-neutral-500 underline-offset-4 hover:text-white hover:decoration-white transition-colors"
+            >
+              akg-images
+            </a>
+            .
+          </p>
+          <p className="pt-2 text-sm text-neutral-400 italic">
+            &mdash; Brad Smith, George Mann&rsquo;s son
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-black">
+        <div
+          className="max-w-5xl mx-auto px-6 py-8 text-center text-xs text-neutral-500 tracking-wider uppercase"
+          style={{ fontFamily: "ui-serif, Georgia, 'Times New Roman', serif" }}
+        >
+          Licensing inquiries:{' '}
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://www.akg-images.co.uk/"
             target="_blank"
             rel="noopener noreferrer"
+            className="underline hover:text-white transition-colors"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+            akg-images
           </a>
         </div>
-      </main>
-    </div>
+      </footer>
+    </>
   );
 }
